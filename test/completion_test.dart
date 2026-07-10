@@ -1,9 +1,8 @@
 import 'package:test/test.dart';
-import '../lib/models/task_models.dart';
+import 'package:task_cli/models/task_models.dart';
+import 'package:task_cli/services/task_service.dart';
 
-import '../lib/services/task_service.dart';
 import 'ajout_test.dart';
-
 
 void main() {
   test('3. Marquer une tâche comme terminée change son statut isCompleted', () {

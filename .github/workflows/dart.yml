@@ -20,10 +20,11 @@ jobs:
       - name: Install dependencies
         run: dart pub get
 
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Static analysis
+        run: dart analyze
+
       - name: Run tests
-        run: |
-          dart test test/ajout_test.dart
-          dart test test/urgence_test.dart
-          dart test test/completion_test.dart
-          dart test test/suppression_test.dart
-          dart test test/tri_test.dart
+        run: dart test

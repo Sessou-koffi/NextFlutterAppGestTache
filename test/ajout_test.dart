@@ -1,13 +1,16 @@
 import 'package:test/test.dart';
-import '../lib/models/task_models.dart';
-import '../lib/services/task_service.dart';
-import '../lib/repositories/task_repository.dart';
-
+import 'package:task_cli/models/task_models.dart';
+import 'package:task_cli/repositories/task_repository.dart';
+import 'package:task_cli/services/task_service.dart';
 
 class MemoryRepository implements Repository<Task> {
   List<Task> data = [];
-  @override List<Task> loadAll() => data;
-  @override void saveAll(List<Task> items) { data = List.from(items); }
+  @override
+  List<Task> loadAll() => data;
+  @override
+  void saveAll(List<Task> items) {
+    data = List.from(items);
+  }
 }
 
 void main() {

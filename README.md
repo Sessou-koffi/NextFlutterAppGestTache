@@ -1,32 +1,88 @@
-# Task CLI - Application de Gestion de Tâches en Dart Pure
+# Task CLI - Gestion de Taches en Dart
 
-Application complète en ligne de commande pour gérer vos tâches quotidiennes, construite en Dart natif.
+Application console (Dart pur) pour gerer des taches avec priorites, dates limites, statut de completion, tri et persistance JSON.
 
-## Architecture du Projet
-L'application est découpée de manière modulaire selon les exigences de généricité, d'héritage et de polymorphisme :
-- `lib/models/` : Modèles de données (Héritage `UrgentTask` et `StandardTask` étendant `Task`).
-- `lib/repositories/` : Patron de conception Repository générique (`Repository<T>`) et persistance locale JSON.
-- `lib/services/` : Orchestration de la logique métier, validation et tris complexes.
-- `lib/exceptions/` : Définition des exceptions applicatives personnalisées.
+## Fonctionnalites
+- Ajout de taches standards et urgentes.
+- Completion et suppression par identifiant.
+- Tri par priorite ou par date limite.
+- Sauvegarde et chargement automatique dans `tasks.json`.
+- Gestion d'erreurs via exceptions metier personnalisees.
 
-## Prérequis
-- Dart SDK installé (version >= 3.0.0)
+## Architecture
+Le code est organise par responsabilite:
 
-## Lancement de l'application CLI
-Exécutez le script principal depuis la racine :
+- `bin/` : point d'entree CLI.
+- `lib/models/` : modeles (`Task`, `StandardTask`, `UrgentTask`) et interface `Serializable`.
+- `lib/repositories/` : contrat `Repository<T>`, implementation JSON generique `JsonRepository<T>`, adaptation `JsonTaskRepository`.
+- `lib/services/` : logique metier (`TaskService`).
+- `lib/exceptions/` : exceptions metier (`TaskException`, `TaskNotFoundException`, etc.).
+- `test/` : tests unitaires (ajout, urgence, completion, suppression, tri, exigences).
+- `.github/workflows/` : pipeline CI GitHub Actions.
+
+## Prerequis
+- Dart SDK `>=3.0.0 <4.0.0`
+
+Verifier votre installation:
+
+```bash
+dart --version
+```
+
+## Installation
+
+Depuis la racine du projet:
+
+```bash
+dart pub get
+```
+
+## Lancer l'application
+
 ```bash
 dart run bin/task_cli.dart
 ```
 
-## Lancement des 5 scénarios de tests unitaires individuels
-Chaque aspect de l'application possède son propre fichier de test à la racine :
+## Lancer les tests
+
+Tous les tests:
+
 ```bash
-dart test test_ajout.dart
-dart test test_urgence.dart
-dart test test_completion.dart
-dart test test_suppression.dart
-dart test test_tri.dart
+dart test
 ```
 
-## Intégration Continue (CI/CD)
-Un pipeline GitHub Actions est configuré dans `.github/workflows/dart.yml` pour valider automatiquement chaque push.
+Un fichier de test specifique:
+
+```bash
+dart test test/ajout_test.dart
+```
+
+## Verification qualite locale
+
+Analyse statique:
+
+```bash
+dart analyze
+```
+
+Verification formatage:
+
+```bash
+dart format --output=none --set-exit-if-changed .
+```
+
+## CI/CD
+
+Le workflow GitHub Actions dans `.github/workflows/dart.yml` execute automatiquement sur `push` et `pull_request`:
+
+- installation des dependances,
+- verification du formatage,
+- analyse statique,
+- execution de tous les tests.
+
+## Exemples rapides d'utilisation
+
+1. Ajouter une tache urgente (priorite haute automatique).
+2. Lister les taches avec tri par priorite.
+3. Completer une tache via son ID.
+4. Supprimer une tache via son ID.

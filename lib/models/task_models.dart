@@ -28,8 +28,7 @@ abstract class Task implements Serializable {
 
   String get taskType;
 
-  @override
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> baseJson() {
     return {
       'id': id,
       'type': taskType,
@@ -39,6 +38,9 @@ abstract class Task implements Serializable {
       'isCompleted': isCompleted,
     };
   }
+
+  @override
+  Map<String, dynamic> toJson();
 }
 
 class StandardTask extends Task {
@@ -52,6 +54,9 @@ class StandardTask extends Task {
 
   @override
   String get taskType => 'standard';
+
+  @override
+  Map<String, dynamic> toJson() => baseJson();
 }
 
 class UrgentTask extends Task {
@@ -64,4 +69,7 @@ class UrgentTask extends Task {
 
   @override
   String get taskType => 'urgent';
+
+  @override
+  Map<String, dynamic> toJson() => baseJson();
 }

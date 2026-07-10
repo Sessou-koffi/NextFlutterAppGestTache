@@ -16,16 +16,19 @@ class TaskService {
 
   List<Task> get tasks => List.unmodifiable(_tasks);
 
-  void addTask(String title, Priority priority, DateTime? dueDate, bool isUrgent) {
+  void addTask(
+      String title, Priority priority, DateTime? dueDate, bool isUrgent) {
     if (title.trim().isEmpty) {
-      throw InvalidTaskDataException('Le titre de la tâche ne peut pas être vide.');
+      throw InvalidTaskDataException(
+          'Le titre de la tâche ne peut pas être vide.');
     }
 
     Task newTask;
     if (isUrgent) {
       newTask = UrgentTask(id: _nextId++, title: title, dueDate: dueDate);
     } else {
-      newTask = StandardTask(id: _nextId++, title: title, priority: priority, dueDate: dueDate);
+      newTask = StandardTask(
+          id: _nextId++, title: title, priority: priority, dueDate: dueDate);
     }
 
     _tasks.add(newTask);
@@ -33,18 +36,26 @@ class TaskService {
   }
 
   void completeTask(int id) {
-    if (id <= 0) throw InvalidTaskDataException('L\'ID doit être un entier positif.');
+    if (id <= 0) {
+      throw InvalidTaskDataException('L\'ID doit être un entier positif.');
+    }
     final taskIndex = _tasks.indexWhere((t) => t.id == id);
-    if (taskIndex == -1) throw TaskNotFoundException(id);
+    if (taskIndex == -1) {
+      throw TaskNotFoundException(id);
+    }
 
     _tasks[taskIndex].isCompleted = true;
     _repository.saveAll(_tasks);
   }
 
   void deleteTask(int id) {
-    if (id <= 0) throw InvalidTaskDataException('L\'ID doit être un entier positif.');
+    if (id <= 0) {
+      throw InvalidTaskDataException('L\'ID doit être un entier positif.');
+    }
     final taskIndex = _tasks.indexWhere((t) => t.id == id);
-    if (taskIndex == -1) throw TaskNotFoundException(id);
+    if (taskIndex == -1) {
+      throw TaskNotFoundException(id);
+    }
 
     _tasks.removeAt(taskIndex);
     _repository.saveAll(_tasks);
