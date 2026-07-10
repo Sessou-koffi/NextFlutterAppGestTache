@@ -13,11 +13,9 @@ Application console (Dart pur) pour gerer des taches avec priorites, dates limit
 Le code est organise par responsabilite:
 
 - `bin/` : point d'entree CLI.
-- `lib/models/` : modeles (`Task`, `StandardTask`, `UrgentTask`) et interface `Serializable`.
-- `lib/repositories/` : contrat `Repository<T>`, implementation JSON generique `JsonRepository<T>`, adaptation `JsonTaskRepository`.
-- `lib/services/` : logique metier (`TaskService`).
-- `lib/exceptions/` : exceptions metier (`TaskException`, `TaskNotFoundException`, etc.).
-- `test/` : tests unitaires (ajout, urgence, completion, suppression, tri, exigences).
+- `lib/src/` : implementation principale organisee par couches (`models/`, `repositories/`, `services/`, `exceptions/`).
+- `lib/models/`, `lib/repositories/`, `lib/services/`, `lib/exceptions/` : façades publiques qui reexportent `lib/src`.
+- `test/` : 6 fichiers de tests unitaires couvrant l'ajout, l'urgence, la completion, la suppression, le tri et les exigences.
 - `.github/workflows/` : pipeline CI GitHub Actions.
 
 ## Prerequis
