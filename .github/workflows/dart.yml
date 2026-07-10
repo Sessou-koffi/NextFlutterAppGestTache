@@ -22,8 +22,8 @@ jobs:
 
       - name: Run tests
         run: |
-          dart test test_ajout.dart
-          dart test test_urgence.dart
-          dart test test_completion.dart
-          dart test test_suppression.dart
-          dart test test_tri.dart
+          dart test test/ajout_test.dart
+          dart test test/urgence_test.dart
+          dart test test/completion_test.dart
+          dart test test/suppression_test.dart
+          dart test test/tri_test.dart

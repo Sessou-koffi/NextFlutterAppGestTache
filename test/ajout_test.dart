@@ -1,7 +1,7 @@
 import 'package:test/test.dart';
-import 'lib/models/task_models.dart';
-import 'lib/services/task_service.dart';
-import 'lib/repositories/task_repository.dart';
+import '../lib/models/task_models.dart';
+import '../lib/services/task_service.dart';
+import '../lib/repositories/task_repository.dart';
 
 
 class MemoryRepository implements Repository<Task> {

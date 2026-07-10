@@ -1,8 +1,8 @@
 //  PAR CECI :
-import 'lib/models/task_models.dart';
+import '../lib/models/task_models.dart';
 import 'package:test/test.dart';
-import 'lib/services/task_service.dart';
-import 'test_ajout.dart';
+import '../lib/services/task_service.dart';
+import 'ajout_test.dart';
 
 void main() {
   test('4. Supprimer une tâche la retire de la liste', () {

@@ -1,7 +1,7 @@
 import 'package:test/test.dart';
-import 'lib/models/task_models.dart';
-import 'lib/services/task_service.dart';
-import 'test_ajout.dart';
+import '../lib/models/task_models.dart';
+import '../lib/services/task_service.dart';
+import 'ajout_test.dart';
 
 void main() {
   test('5. Le tri par priorité place les éléments High en premier', () {
