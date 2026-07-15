@@ -1,16 +1,10 @@
 name: Dart CI
-
-on:
-  push:
-    branches: [ "main" ]
-
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: dart-lang/setup-dart@v1
-      - name: Install dependencies
-        run: dart pub get
-      - name: Run tests
-        run: dart test test/task_management_test.dart
+      - run: dart pub get
+      - run: dart test test/task_test.dart

@@ -1,6 +1,6 @@
-import '../models/task_models.dart';
-import '../repositories/task_repository.dart';
-import '../exceptions/task_exceptions.dart';
+import 'task_models.dart';
+import '../data/task_repository.dart';
+import 'task_exceptions.dart';
 
 class TaskService {
   final Repository<Task> _repository;

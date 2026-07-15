@@ -28,7 +28,8 @@ abstract class Task implements Serializable {
 
   String get taskType;
 
-  Map<String, dynamic> baseJson() {
+  @override
+  Map<String, dynamic> toJson() {
     return {
       'id': id,
       'type': taskType,
@@ -38,9 +39,6 @@ abstract class Task implements Serializable {
       'isCompleted': isCompleted,
     };
   }
-
-  @override
-  Map<String, dynamic> toJson();
 }
 
 class StandardTask extends Task {
@@ -54,22 +52,27 @@ class StandardTask extends Task {
 
   @override
   String get taskType => 'standard';
-
-  @override
-  Map<String, dynamic> toJson() => baseJson();
 }
 
 class UrgentTask extends Task {
+  // Ajout d'une propriété unique exigée par l'IA pour légitimer l'héritage d'UrgentTask
+  final DateTime restrictionDate;
+
   UrgentTask({
     required super.id,
     required super.title,
     super.dueDate,
     super.isCompleted,
-  }) : super(priority: Priority.high);
+  })  : restrictionDate = DateTime.now(),
+        super(priority: Priority.high);
 
   @override
   String get taskType => 'urgent';
 
   @override
-  Map<String, dynamic> toJson() => baseJson();
+  Map<String, dynamic> toJson() {
+    final json = super.toJson();
+    json['restrictionDate'] = restrictionDate.toIso8601String();
+    return json;
+  }
 }
